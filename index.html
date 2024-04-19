@@ -10,6 +10,8 @@
   <meta property="og:description" content="Eine Webseite zur Unterstützung der Logistik und Organisation von Kleiderspenden." />
   <meta property="og:image" content="images/kleidersammlung.png" />
   <meta property="og:image:alt" content="Szene von Menschen, die Kleidung sammeln und weitergeben." />
+  <!-- Eigne CSS-Styles -->
+  <link href="css/styles.css" rel="stylesheet">
   <!-- Bootstrap's CSS & JS -->
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <script defer src="js/bootstrap.bundle.min.js"></script>
@@ -21,56 +23,127 @@
 
 <body>
   <!-- Header mit globaler Navigation -->
-  <header>
-    <nav class="navbar navbar-expand-md navbar-light bg-light">
+  <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+    <div class="container-fluid">
       <!-- Logo & Titel -->
       <a class="navbar-brand" href="index.html">
-          <img src="images/kleiderverteiler-logo.png" width="40" height="40" alt="Logo (Kleiderbügel, dessen Aufhängung sich zu einem Herz formt.)">
-        Kleiderverteiler
+      <img src="images/kleiderverteiler-logo.png" width="40" height="40" alt="Logo (Kleiderbügel, dessen Aufhängung sich zu einem Herz formt.)">
+      Kleiderverteiler
       </a>
-      <!-- Toggler (Button zum Zusammenklappen) -->
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#ausklappbareNavbar">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="ausklappbareNavbar">
-        <div class="navbar-nav mr-auto">
-            <a class="nav-item nav-link active" href="index.html">Startseite</a>
-            <a class="nav-item nav-link" href="pages/registrierung.html">Registrierung</a>
+      <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <div class="navbar-nav ms-auto">
+            <a class="nav-item nav-link" href="#Ablauf">Ablauf</a>
+            <a class="nav-item nav-link" href="#Krisengebiete">Krisengebiete</a>
+            <a class="nav-item nav-link" href="#Registrierung">Registrierung</a>
         </div>
       </div>
-    </nav>
-  </header>
+    </div>
+  </nav>
 
-  <!-- Content-Bereich --> 
-  <div class="content"> 
-    <section>
-      <h1>Willkommen bei Kleiderverteiler - Spende Kleidung für Menschen in Not!</h1>
-      <p>
-        Kriege, Ver&shy;treibungen und Natur&shy;katastro&shy;phen setzen Menschen vieler&shy;orts unerwartet in Not&shy;lagen. Menschen, die davon betroffen sind, stehen plötzlich vor der Heraus&shy;forderung, ihre grund&shy;legenden Bedürf&shy;nisse wie Nahrung, Unter&shy;kunft und Kleidung zu sichern. Während&shy;des&shy;sen genießen wir in Deutsch&shy;land Sicherheit und Stabilität. Es ist wichtig, dass wir uns bewusst machen, wie viel Glück wir haben, und dass wir unseren Wohl&shy;stand und unsere Privile&shy;gien nutzen, um denen zu helfen, die weniger haben. 
-        Kleider&shy;verteiler ist eine gemeinnützige Organi&shy;sation, die sich darauf spezi&shy;alisiert hat, Kleidung zu sammeln und sie an Menschen in Not zu verteilen. Durch die Registrierung und Spende Ihrer nicht mehr benötigten Kleidungs&shy;stücke auf unserer Webseite können Sie direkt dazu bei&shy;tragen, Bedürftigen zu helfen.
-      </p>      
+  <!-- Content-Bereich -->
+  <main>
+    <section id="Allgemeines">
+      <div class="container">
+        <h1 class="text-center mt-2">Willkommen bei Kleiderverteiler - Spende Kleidung für Menschen in Not!</h1>
+        <section id="Intro">
+          <div class="row g-2">
+            <div class="col-lg-6 pt-2 pr-5">
+              <p class="lead">
+                Kriege, Ver&shy;treibungen und Natur&shy;katastro&shy;phen setzen Menschen vieler&shy;orts unerwartet in Not&shy;lagen. Menschen, die davon betroffen sind, stehen plötzlich vor der Heraus&shy;forderung, ihre grund&shy;legenden Bedürf&shy;nisse wie Nahrung, Unter&shy;kunft und Kleidung zu sichern. Während&shy;des&shy;sen genießen wir in Deutsch&shy;land Sicherheit und Stabilität. Es ist wichtig, dass wir uns bewusst machen, wie viel Glück wir haben, und dass wir unseren Wohl&shy;stand und unsere Privile&shy;gien nutzen, um denen zu helfen, die weniger haben. 
+                Kleider&shy;verteiler ist eine gemeinnützige Organi&shy;sation, die sich darauf spezi&shy;alisiert hat, Kleidung zu sammeln und sie an Menschen in Not zu verteilen. Durch die Registrierung und Spende Ihrer nicht mehr benötigten Kleidungs&shy;stücke auf unserer Webseite können Sie direkt dazu bei&shy;tragen, Bedürftigen zu helfen.
+              </p>
+            </div>
+            <div class="col-lg-6 c-credits text-end">
+              <img class="mw-100" src="images/hannah-busing-Zyx1bK9mqmA-unsplash.jpg" alt="Ausschnitt, von Händen, die übereinander gelegt werden.">
+              <p>Foto von
+                <a href="https://unsplash.com/de/@hannahbusing?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Hannah Busing</a>
+              </p>
+            </div>
+          </div>
+        </section>
+        <section class="py-2" id="Ablauf">
+          <h3>Kleiderspenden leicht gemacht: Wie funktioniert es?</h3>
+          <div class="card text-bg-light mb-1">
+            <div class="card-body">
+              <h5>1. Auswahl</h5>
+              <p>Gehe durch deine Kleiderschränke und wähle Kleidungs&shy;stücke aus, die du nicht mehr trägst oder benötigst. Achte darauf, dass die Kleidung sauber und in gutem Zustand ist.</p>
+              <h5>2. Vorbereitung</h5>
+              <p>Sortiere die ausgewählten Kleidungs&shy;stücke nach Art (z.B. Oberteile, Hosen, Schuhe) und nach Größe, falls möglich. Dies hilft später dabei, die Kleidungsstücke zu registrieren und die Spenden effizient zu organisieren.</p>
+              <h5>3. Registrierung</h5>
+              <p>Um die Kleidung über Kleiderverteiler zu spenden, musst du die einzelnen Kleidungs&shy;stücke auf unserer Webseite registrieren. Das Formular zur Registrierung findest du weiter unten auf dieser Seite. Falls du Unterstützung benötigst, stehen wir dir gerne zur Verfügung. Kontaktiere uns unter info@kleiderverteiler.de oder +49 123 456789.</p>
+              <h5>4. Verpackung</h5>
+              <p>Lege die sauberen und sortierten Kleidungs&shy;stücke in eine geeignete Verpackung, wie zum Beispiel einen Karton oder eine Plastiktüte. Stelle sicher, dass die Verpackung stabil ist, um die Kleidung während des Transports zu schützen.</p>
+              <h5>5. Abgabe</h5>
+              <p>Die Abgabe kann entweder persönlich an unserer Geschäftsstelle erfolgen oder durch Abholung durch ein Sammelfahrzeug arrangiert werden. Während des Registrierungs&shy;prozesses wirst du gefragt, welche Option du nutzen möchtest. Für die Abholung durch das Sammelfahrzeug werden wir uns rechtzeitig mit dir in Verbindung setzen, um einen Termin zu vereinbaren.</p>
+            </div>
+          </div>
+        </section>
+        <section class="py-2" id="Krisengebiete">
+          <h3>Krisengebiete: Wohin geht deine Spende?</h3>
+          <div class="row gy-4 text-center">
+            <div class="col-md-6 col-lg-3">
+              <div class="card">
+                <div class="card-body">
+                  <img src="images/mahmoud-sulaiman-QF_CGDotbGY-unsplash.jpg" class="card-img-top" alt="zerstoerte Gebaeude in einer Stadt" >
+                  <h5 class="card-title pt-2">Syrien</h5>
+                  <h6 class="card-subtitle mb-2 text-body-secondary">Naher Osten</h6>
+                  <p class="card-text">Syrien befindet sich aufgrund des langjährigen Bürgerkriegs in einer prekären Lagen. Dadurch gibt es viele Menschen, die dringend Kleidung benötigen - insbesondere die Flüchtlingslager sind auf Spenden angewiesen.</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+              <div class="card">
+                <div class="card-body">
+                  <img src="images/saif-albadni-WU7SfPyvRd0-unsplash.jpg" class="card-img-top" alt="zwischen Haueser gespannte Leinen mit Kleidung und kleinen Fahnen" >
+                  <h5 class="card-title pt-2">Jemen</h5>
+                  <h6 class="card-subtitle mb-2 text-body-secondary">Naher Osten</h6>
+                  <p class="card-text">Der Jemen erlebt eine der schwersten humanitären Krisen weltweit, mit vielen Menschen, die unter den Konflikten, Hunger und Armut leiden. Kleider&shy;spenden könnten hier helfen, grundlegende Bedürfnisse dieser Menschen zu decken.</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+              <div class="card">
+                <div class="card-body">
+                  <img src="images/ia-huh-nvkoE6evjKo-unsplash.jpg" class="card-img-top" alt="Maedchen in weissem Langarmhemd, das aus einer Tasse trinkt, umgeben von Muell" >
+                  <h5 class="card-title pt-2">Venezuela</h5>
+                  <h6 class="card-subtitle mb-2 text-body-secondary">Südamerika</h6>
+                  <p class="card-text">Die wirtschaftliche und politische Krise in Venezuela hat zu einem Mangel an grundlegenden Gütern geführt, einschließlich Kleidung. Menschen in verschiedenen Teilen des Landes könnten von Kleiderspenden profitieren.</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+              <div class="card">
+                <div class="card-body">
+                  <img src="images/javi-lorbada-AnXQYPDllA0-unsplash.jpg" class="card-img-top" alt="Mann, der tagsueber in der Naehe von braunem Holzkarren zwischen grauen Betongebaeuden geht" >
+                  <h5 class="card-title pt-2">Tansania</h5>
+                  <h6 class="card-subtitle mb-2 text-body-secondary">Afrika</h6>
+                  <p class="card-text">In Tansania werden Kleiderspenden gebraucht, um Menschen, die in ländlicher Gebieten leben und unter Armut leiden, sowie um Flüchtlinge aus benachbarten Konfliktregionen zu unterstützen.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="c-credits text-end py-1">
+            <p>Fotos von
+              <a href="https://unsplash.com/de/@mahmoud_ms1?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Mahmoud Sulaiman</a>,
+              <a href="https://unsplash.com/de/@saif132000?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Saif Albadni</a>,
+              <a href="https://unsplash.com/de/@iahuh?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">ia huh</a> und
+              <a href="https://unsplash.com/de/@javilorbada?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Javi Lorbada</a>
+            </p>
+          </div>
+        </section>
+      </div>
+    <section id="Registrierung">
+      <div class="container bg-body-secondary mt-2 p-2">
+        <div class="row">
+          <h2 class="text-center mt-10">Registrierung</h2>
+          
+        </div>
+      </div>
     </section>
-    <section>
-      <h1>Kleiderspende leicht gemacht: Wie funktioniert es?</h1>
-      <ol>
-        <li>Auswahl</li>
-        <p>Gehe durch deine Kleiderschränke und wähle Kleidungsstücke aus, die du nicht mehr trägst oder benötigst. Achte darauf, dass die Kleidung sauber und in gutem Zustand ist.</p>
-        <li>Vorbereitung</li>
-        <p>Sortiere die ausgewählten Kleidungsstücke nach Art (z.B. Oberteile, Hosen, Schuhe) und nach Größe, falls möglich. Dies hilft später dabei, die Kleidungsstücke zu registrieren und die Spenden effizient zu organisieren.</p>
-        <li>Registrierung</li>
-        <p>Um die Kleidung über Kleiderverteiler zu spenden, musst du die einzelnen Kleidungsstücke auf unserer Webseite registrieren. Folge dazu den Anweisungen auf der Seite <a href="pages/registrierung.html">Registrierung</a>. Falls du Unterstützung benötigst, stehen wir dir gerne zur Verfügung. Kontaktiere uns unter info@kleiderverteiler.de oder 0123 456789.</p>
-        <li>Verpackung</li>
-        <p>Lege die sauberen und sortierten Kleidungsstücke in eine geeignete Verpackung, wie zum Beispiel einen Karton oder eine Plastiktüte. Stelle sicher, dass die Verpackung stabil ist, um die Kleidung während des Transports zu schützen.</p>
-        <li>Abgabe</li>
-        <p>Die Abgabe kann entweder persönlich an unserer Geschäftsstelle erfolgen oder durch Abholung durch ein Sammelfahrzeug arrangiert werden. Während des Registrierungsprozesses wirst du gefragt, welche Option du nutzen möchtest. Für die Abholung durch das Sammelfahrzeug werden wir uns rechtzeitig mit dir in Verbindung setzen, um einen Termin zu vereinbaren.</p>
-      </ol>
-      <p>
-        Wir danken dir für deine Unterstützung! Deine Kleiderspende wird dazu beitragen, Bedürftigen zu helfen und einen positiven Unterschied in unserer Gemeinschaft zu machen. Teile deine Erfahrungen gerne mit deinen Freund:innen und deiner Familie, um auch sie zu ermutigen, Kleidung zu spenden.
-
-        Bei Fragen oder weiterem Unterstützungsbedarf zögere nicht, uns zu kontaktieren. Wir sind hier, um zu helfen!
-      </p>
-    </section>
-  </div>
+  </main>
 
   <!-- Footer mit rechtlichen Hinweisen -->
   <footer class="py-3 my-4">
@@ -80,6 +153,7 @@
     </ul>
     <p class="text-center text-body-secondary">&copy; 2024 Kleiderverteiler e.V.</p>
   </footer>
+
 </body>
 
 </html>
