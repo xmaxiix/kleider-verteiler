@@ -10,11 +10,12 @@
   <meta property="og:description" content="Eine Webseite zur Unterstützung der Logistik und Organisation von Kleiderspenden." />
   <meta property="og:image" content="images/kleidersammlung.png" />
   <meta property="og:image:alt" content="Szene von Menschen, die Kleidung sammeln und weitergeben." />
-  <!-- Eigne CSS-Styles -->
+  <!-- Eigne CSS-Styles JS-Skripte -->
   <link href="css/styles.css" rel="stylesheet">
+  <script src="js/scripts.js" defer></script>
   <!-- Bootstrap's CSS & JS -->
   <link href="css/bootstrap.min.css" rel="stylesheet">
-  <script defer src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/bootstrap.bundle.min.js" defer></script>
   <!-- Favicon -->
   <link rel="icon" sizes="16x16 32x32 48x48" type="image/png" href="images/kleiderverteiler-logo.png" />
   <!-- Icon für iOS-Geräte, wenn Benutzer:innen die Seite zum Startbildschirm hinzufügen -->
@@ -51,12 +52,12 @@
         <section id="Intro">
           <div class="row g-2">
             <div class="col-lg-6 pt-2 pr-5">
-              <p class="lead">
+              <p class="lead" style="text-align: justify">
                 Kriege, Ver&shy;treibungen und Natur&shy;katastro&shy;phen setzen Menschen vieler&shy;orts unerwartet in Not&shy;lagen. Menschen, die davon betroffen sind, stehen plötzlich vor der Heraus&shy;forderung, ihre grund&shy;legenden Bedürf&shy;nisse wie Nahrung, Unter&shy;kunft und Kleidung zu sichern. Während&shy;des&shy;sen genießen wir in Deutsch&shy;land Sicherheit und Stabilität. Es ist wichtig, dass wir uns bewusst machen, wie viel Glück wir haben, und dass wir unseren Wohl&shy;stand und unsere Privile&shy;gien nutzen, um denen zu helfen, die weniger haben. 
                 Kleider&shy;verteiler ist eine gemeinnützige Organi&shy;sation, die sich darauf spezi&shy;alisiert hat, Kleidung zu sammeln und sie an Menschen in Not zu verteilen. Durch die Registrierung und Spende Ihrer nicht mehr benötigten Kleidungs&shy;stücke auf unserer Webseite können Sie direkt dazu bei&shy;tragen, Bedürftigen zu helfen.
               </p>
             </div>
-            <div class="col-lg-6 c-credits text-end">
+            <div class="col-lg-6 c-credits">
               <img class="mw-100" src="images/hannah-busing-Zyx1bK9mqmA-unsplash.jpg" alt="Ausschnitt, von Händen, die übereinander gelegt werden.">
               <p>Foto von
                 <a href="https://unsplash.com/de/@hannahbusing?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Hannah Busing</a>
@@ -125,7 +126,7 @@
               </div>
             </div>
           </div>
-          <div class="c-credits text-end py-1">
+          <div class="c-credits py-1">
             <p>Fotos von
               <a href="https://unsplash.com/de/@mahmoud_ms1?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Mahmoud Sulaiman</a>,
               <a href="https://unsplash.com/de/@saif132000?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Saif Albadni</a>,
@@ -137,14 +138,119 @@
       </div>
     <section id="Registrierung">
       <div class="container bg-body-secondary mt-2 p-2">
-        <div class="row">
-          <h2 class="text-center mt-10">Registrierung</h2>
-          
+        <h2 class="text-center mt-10">Registrierung</h2>
+        <p class="form-text text-center">Wir verwenden die nachfolgend angebenen Daten ausschließlich gemäß unserer Datenschutzerklärung.</p>
+        <form id="registrationForm" class="needs-validation" novalidate>
+          <section id="PLZ">
+            <div class="row p-2">
+              <div class="mb-3">
+                <label for="eingabePLZ" class="form-label">Bitte gib deine Postleitzahl ein:</label>
+                <input type="text" class="form-control" id="eingabePLZ" placeholder="01234" aria-describedby="PLZInfo" required>
+                <div id="PLZInfo" class="form-text">Durch die Angabe deiner Postleitzahl können wir überprüfen, ob eine Abholung durch unser Sammelfahrzeug möglich ist.</div>
+                <!-- Ort erkennen & Abhol-Option anzeigen-->
+              </div>
+            </div>
+          </section>
+          <section id="SpendendePerson">
+            <h5>Angaben zu Spender:in</h5>
+            <div class="row px-2">
+              <div class="col-md-4">
+                <div class="mb-3">
+                  <input type="text" class="form-control" id="regName" required>
+                  <label for="regName" class="form-label">Name</label>
+                  <div class="invalid-feedback">Wir benötigen deinen Namen für die Registrierung der Spende.</div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="mb-3">
+                  <input type="text" class="form-control" id="regVorname" required>
+                  <label for="regVorname" class="form-label">Vorname</label>
+                  <div class="invalid-feedback">Wir benötigen deinen Vornamen für die Registrierung der Spende.</div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="mb-3">
+                  <input type="text" class="form-control" id="regMail">
+                  <label for="regMail" class="form-label">E-Mail <span class="text-body-secondary">(Optional)</span></label>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section id="Abholort">
+            <h5>Angaben zum Abholort</h5>
+            <div class="row px-2 mb-3 ">
+              <div class="mx-3 form-check">
+                <input type="checkbox" class="form-check-input" id="auswahlAbholung">
+                <label class="form-check-label" for="auswahlAbholung">Meine Spende soll durch das Sammelfahrzeug abgeholt werden.</label>
+              </div>
+            </div>
+            <div class="row px-2">
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <input type="text" class="form-control" id="regAdresse" required>
+                  <label for="regAdresse" class="form-label">Straße und Hausnummer</label>
+                  <div class="invalid-feedback">Wir benötigen deine Adresse für die Abholung durch unser Sammelfahrzeug.</div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="mb-3">
+                  <input type="text" class="form-control disable" id="regPLZ" disabled>
+                  <label for="regPLZ" class="form-label">Postleitzahl</label>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="mb-3">
+                  <input type="text" class="form-control" id="regOrt" disabled>
+                  <label for="regOrt" class="form-label">Ort</label>
+                </div>
+              </div>
+            </div>
+            <div class="row px-2">
+              <div class="mb-3">
+                <input type="text" class="form-control" id="regNameAbholung">
+                <label for="regNameAbholung" class="form-label">Abweichender Name bei Abholung <span class="text-body-secondary">(Optional)</span></label>
+              </div>
+            </div>
+          </section>
+          <section id="Zustellungsland">
+            <h5>Auswahl des Krisengebietes</h5> 
+            <div class="row px-2 mb-3 ">
+              <div class="mx-3 form-check">
+                <input type="checkbox" class="form-check-input" id="auswahlKrisengebiet">
+                <label class="form-check-label" for="auswahlKrisengebiet">Ich möchte entscheiden, wohin meine Kleidung gespendet wird.</label>
+              </div>
+            </div>
+          </section>
+          <section id="Kleidungsstücke">
+            <h5>Kleidungsstücke</h5>
+            <div class="row px-2">
+              <div class="col-md-4">
+                <div class="mb-3">
+                  <input type="text" class="form-control" id="regKSArt" required>
+                  <label for="regKSArt" class="form-label">Art</label>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="mb-3">
+                  <input type="text" class="form-control" id="regKSGröße" required>
+                  <label for="regKSGröße" class="form-label">Größe</label>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="mb-3">
+                  <input type="text" class="form-control" id="regKSBezeichnung">
+                  <label for="regKSBezeichnung" class="form-label">Bezeichnung</label>
+                </div>
+              </div>
+            </div>
+          </section>
+          <button type="submit" class="btn btn-success btn-lg">Registrierung abschließen</button>
+        </form>
         </div>
       </div>
     </section>
   </main>
-
+  
   <!-- Footer mit rechtlichen Hinweisen -->
   <footer class="py-3 my-4">
     <ul class="nav justify-content-center border-bottom pb-3 mb-3">
