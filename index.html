@@ -170,7 +170,7 @@
               <p class="ps-1 mt-1" style="font-size: 12px; color: rgb(71, 68, 75);">Durch die Angabe deiner Post&shy;leit&shy;zahl können wir über&shy;prüfen, ob eine Ab&shy;holung durch unser Sammel&shy;fahrzeug möglich ist.</p>
               <div class="d-none" id="optionAbgabe">
                 <p id="abgabeInfo" class="mt-2 p-2 text-center rounded" style="background-color: #8661E5; color: #ffffff;"></p>
-                <p class="ms-2"> Unsere Geschäftstelle befindet sich in der Musterstr. 1, 01067 Dresden.</p>
+                <p class="bg-light py-2 px-3 rounded">Unsere Geschäftstelle befindet sich in der Musterstr. 1, 01067 Dresden.</p>
               </div>
             </div>
           </div>
@@ -182,30 +182,30 @@
               </div>
             </div>
             <div class="d-none" id="angabenAbholung">
-              <div class="row ms-2 pt-1">
-                <div class="col-lg-4 mb-3">
-                  <label for="adresse" class="form-label">Abholadresse</label>
-                  <input type="text" class="form-control" id="adresse" placeholder="Straße Hausnr., PLZ Ort">
-                </div>
-                <div class="col-lg-4 mb-3">
-                  <label for="zusatzAbholung" class="form-label">Kommentar zur Abholung <span class="text-body-secondary">(optional)</span></label>
-                  <input type="text" class="form-control" id="zusatzAbholung" placeholder="bspw. abweichender Name bei Abholadresse">
-                </div>
-                <div class="col-lg-4 mb-3">
-                  <label for="abgabeDatum" class="form-label">Wunschdatum</label>
-                  <input type="date" class="form-control" id="abgabeDatum">
-                </div>
-              </div>
-              <div class="row ms-2">
+              <div class="row">
                 <div class="col-lg-12">
-                  <p class="bg-light p-3 rounded">
+                  <p class="bg-light py-2 px-3 rounded">
                     Um die Abholung durch unser Sammel&shy;fahrzeug planen zu können, benötigen wir weitere Angaben von dir. Bitte beachte, dass die Abholung an der angegebenen Abhol&shy;adresse und zum gewünschten Datum nicht garantiert werden kann. Zur Abstimmung des Abhol&shy;termins benötigen wir deine E-Mail-Adresse.
                     Im Anschluss an die Registrierung werden deine Daten an unser Team über&shy;mittelt, welches die Abholungen der Spenden koordiniert. Du erhältst eine Mail mit weiter&shy;führenden Informationen, sobald wir dir einen konkreten Abhol&shy;termin vorschlagen können bzw. sofern offene Fragen mit dir geklärt werden müssen.
                   </p>
-                  <div class="mb-3">
-                    <label for="regMail" class="form-label">E-Mail</label>
-                    <input type="text" class="form-control" id="regMail">
-                  </div>
+                </div>
+              </div>
+              <div class="row pt-1">
+                <div class="col-lg-3 mb-3">
+                  <label for="mail" class="form-label">E-Mail</label>
+                  <input type="text" class="form-control" id="mail">
+                </div>
+                <div class="col-lg-3 mb-3">
+                  <label for="adresse" class="form-label">Abholadresse</label>
+                  <input type="text" class="form-control" id="adresse" placeholder="Straße Hausnr., PLZ Ort">
+                </div>
+                <div class="col-lg-3 mb-3">
+                  <label for="zusatzAbholung" class="form-label">Kommentar zur Abholung <span class="text-body-secondary">(optional)</span></label>
+                  <input type="text" class="form-control" id="zusatzAbholung" placeholder="bspw. abweichender Name bei Abholadresse">
+                </div>
+                <div class="col-lg-3 mb-3">
+                  <label for="abgabeDatum" class="form-label">Wunschdatum</label>
+                  <input type="date" class="form-control" id="abgabeDatum">
                 </div>
               </div>
             </div>
@@ -217,51 +217,78 @@
         <div id="step3" class="form-step d-none">
           <h5>Registrierung der Kleidungsstücke</h5>
           <form id="kleiderFormular">
-            <div class="mb-3">
-              <label for="kleiderArt" class="form-label">Art</label>
-              <select class="form-select" id="kleiderArt">
-                <option value="">Bitte wählen</option>
-                <option value="Shirts & Tops">Shirts & Tops</option>
-                <option value="Hemden & Blusen">Hemden & Blusen</option>
-                <option value="Sweatshirts & Hoodies">Sweatshirts & Hoodies</option>
-                <option value="Kleider & Jumpsuits">Kleider & Jumpsuits</option>
-                <option value="Jacken & Mäntel">Jacken & Mäntel</option>
-                <option value="Hosen">Hosen</option>
-                <option value="Röcke">Röcke</option>
-                <option value="Sportbekleidung">Sportbekleidung</option>
-                <option value="Unterwäsche & Socken">Unterwäsche & Socken</option>
-                <option value="Sonstiges">Sonstiges</option>
+            <div class="row px-2">
+              <div class="col-lg-4 mb-3">
+                <label for="kleiderArt" class="form-label">Art</label>
+                <select class="form-select" id="kleiderArt">
+                  <option value="">Bitte wählen</option>
+                  <option value="Shirts & Tops">Shirts & Tops</option>
+                  <option value="Hemden & Blusen">Hemden & Blusen</option>
+                  <option value="Sweatshirts & Hoodies">Sweatshirts & Hoodies</option>
+                  <option value="Kleider & Jumpsuits">Kleider & Jumpsuits</option>
+                  <option value="Jacken & Mäntel">Jacken & Mäntel</option>
+                  <option value="Hosen">Hosen</option>
+                  <option value="Röcke">Röcke</option>
+                  <option value="Sportbekleidung">Sportbekleidung</option>
+                  <option value="Unterwäsche & Socken">Unterwäsche & Socken</option>
+                  <option value="Sonstiges">Sonstiges</option>
+                </select>
+              </div>
+              <div class="col-lg-4 mb-3">
+                <label for="kleiderBeschreibung" class="form-label">Beschreibung</label>
+                <input type="text" class="form-control" id="kleiderBeschreibung" placeholder="Beschreibung eingeben">
+              </div>
+              <div class="col-lg-4 mb-3">
+                <label for="kleiderGroesse" class="form-label">Größe</label>
+                <select class="form-select" id="kleiderGroesse">
+                  <option value="">Bitte wählen</option>
+                  <option value="XXS">XXS</option>
+                  <option value="XS">XS</option>
+                  <option value="S">S</option>
+                  <option value="M">M</option>
+                  <option value="L">L</option>
+                  <option value="XL">XL</option>
+                  <option value="XXL">XXL</option>
+                  <option value="Unisex">Unisex</option>
+                  <option value="Andere">Andere</option>
               </select>
+              </div>
             </div>
-            <div class="mb-3">
-              <label for="kleiderBeschreibung" class="form-label">Beschreibung</label>
-              <input type="text" class="form-control" id="kleiderBeschreibung" placeholder="Beschreibung eingeben">
+            <div class="px-2 mb-3">
+              <button type="button" id="ergaenzeKlStk" class="btn btn-primary" disabled>Kleidungsstück hinzufügen</button>
             </div>
-            <div class="mb-3">
-              <label for="kleiderGroesse" class="form-label">Größe</label>
-              <select class="form-select" id="kleiderGroesse" multiple>
-                <option value="XXS">XXS</option>
-                <option value="XS">XS</option>
-                <option value="S">S</option>
-                <option value="M">M</option>
-                <option value="L">L</option>
-                <option value="XL">XL</option>
-                <option value="XXL">XXL</option>
-                <option value="Unisex">Unisex</option>
-            </select>
-            </div>
-            <button type="button" id="ergaenzeKlStk" class="btn btn-primary" disabled>Kleidungsstück hinzufügen</button>
           </form>
-          <ul id="kleiderListe" class="list-group mt-3"></ul>
+          <ul id="kleiderListe" class="list-group mt-3 ms-2"></ul>
           <button class="btn btn-secondary" onclick="zeigeStep(2)">Zurück</button>
           <button class="btn btn-primary" onclick="zeigeStep(4)">Weiter</button>
         </div>
     
         <div id="step4" class="form-step d-none">
-            <h5>Auswahl des Spendengebiets</h5>
-            <!-- Details zur Auswahl des Spendengebiets -->
-            <button class="btn btn-secondary" onclick="zeigeStep(3)">Zurück</button>
-            <button class="btn btn-primary" onclick="submitForm()">Abschließen</button>
+          <h5>Auswahl des Spendengebiets</h5>
+          <div class="mb-3 ms-2">
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="spendengebiet" id="syrien" value="Syrien">
+              <label class="form-check-label" for="syrien">Syrien</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="spendengebiet" id="jemen" value="Jemen">
+              <label class="form-check-label" for="jemen">Jemen</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="spendengebiet" id="venezuela" value="Venezuela">
+              <label class="form-check-label" for="venezuela">Venezuela</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="spendengebiet" id="tansania" value="Tansania">
+              <label class="form-check-label" for="tansania">Tansania</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="spendengebiet" id="flexibel" value="Flexibel">
+              <label class="form-check-label" for="flexibel">Meine Kleidung soll dahin gespendet werden, wo sie gerade gebraucht wird.</label>
+            </div>
+          </div>
+          <button class="btn btn-secondary" onclick="zeigeStep(3)">Zurück</button>
+          <button class="btn btn-primary" onclick="submitForm()">Abschließen</button>
         </div>
     
         <div id="summary" class="d-none">
