@@ -10,8 +10,7 @@
   <meta property="og:description" content="Eine Webseite zur Unterstützung der Logistik und Organisation von Kleiderspenden." />
   <meta property="og:image" content="images/kleidersammlung.png" />
   <meta property="og:image:alt" content="Szene von Menschen, die Kleidung sammeln und weitergeben." />
-  <!-- Eigne CSS-Styles JS-Skripte -->
-  <link href="css/styles.css" rel="stylesheet">
+  <!-- Eigne JS-Skripte -->
   <script src="js/scripts.js" defer></script>
   <!-- Bootstrap's CSS & JS -->
   <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -59,12 +58,12 @@
             </div>
             <div class="col-lg-6 c-credits">
               <img class="mw-100" src="images/hannah-busing-Zyx1bK9mqmA-unsplash.jpg" alt="Ausschnitt, von Händen, die übereinander gelegt werden.">
-              <p>Foto von
+              <p class="py-1" style="font-size: 9px; color: rgb(71, 68, 75); text-align: right;">Foto von
                 <a href="https://unsplash.com/de/@hannahbusing?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Hannah Busing</a>
               </p>
             </div>
           </div>
-          <div class="row mb-3 d-flex flex-column align-items-center">
+          <div class="row mb-3 mx-1 d-flex flex-column align-items-center">
             <a href="#Registrierung" class="btn btn-lg btn-dark">Registriere jetzt deine Spende!</a>
           </div>
         </section>
@@ -144,69 +143,75 @@
         <h2 class="text-center mt-10">Registrierung</h2>
         <p class="form-text text-center">Wir verwenden die nachfolgend angebenen Daten ausschließlich gemäß unserer Datenschutzerklärung.</p>
 
-        <div id="step1" class="form-step">
+        <div id="step1" class="form-step container pb-2">
           <h5>Angaben zum:zur Spender:in</h5>
-          <div class="row px-2">
+          <div class="row">
             <div class="col-md-6 mb-3">
-                <label for="regNachname" class="form-label">Nachname</label>
-                <input type="text" class="form-control" id="regNachname" required>
-                <div class="invalid-feedback">Wir benötigen deinen Nachnamen für die Registrierung der Spende.</div>
+                <label for="nachname" class="form-label">Nachname</label>
+                <input type="text" class="form-control" id="nachname">
             </div>
             <div class="col-md-6 mb-3">
-                <label for="regVorname" class="form-label">Vorname</label>
-                <input type="text" class="form-control" id="regVorname" required>
+                <label for="vorname" class="form-label">Vorname</label>
+                <input type="text" class="form-control" id="vorname">
                 <div class="invalid-feedback">Wir benötigen deinen Vornamen für die Registrierung der Spende.</div>
             </div>
           </div>
           <button class="btn btn-primary" onclick="zeigeStep(2)">Weiter</button>
         </div>
     
-        <div id="step2" class="form-step d-none">
+        <div id="step2" class="form-step container pb-2 d-none">
           <h5>Möglichkeit zur Abgabe der Spende</h5>
-          <div class="row px-2">
-            <div class="mb-1">
-              <label for="plz" class="form-label">Postleitzahl</label>
-              <input type="text" class="form-control" id="plz" style="width: 80px;" required>
-              <p class="ps-1 mt-1" style="font-size: 12px; color: rgb(71, 68, 75);">Durch die Angabe deiner Post&shy;leit&shy;zahl können wir über&shy;prüfen, ob eine Ab&shy;holung durch unser Sammel&shy;fahrzeug möglich ist.</p>
-              <div class="d-none" id="optionAbgabe">
-                <p id="abgabeInfo" class="mt-2 p-2 text-center rounded" style="background-color: #8661E5; color: #ffffff;"></p>
-                <p class="bg-light py-2 px-3 rounded">Unsere Geschäftstelle befindet sich in der Musterstr. 1, 01067 Dresden.</p>
+          <div class="row mb-3">
+            <p class="text-body-secondary">
+              Die Abgabe kann entweder persön&shy;lich an unserer Geschäfts&shy;stelle erfolgen oder als Abholung durch unser Sammel&shy;fahrzeug arrangiert werden. Durch die Angabe deiner Post&shy;leit&shy;zahl (PLZ) können wir über&shy;prüfen, ob eine Ab&shy;holung möglich ist.
+            </p>
+            <input type="text" class="form-control ms-3" id="plz" placeholder="PLZ" style="width: 80px;">
+          </div>
+          <div class="row mb-3">
+            <div class="d-none" id="optionAbgabe">
+              <p id="abgabeInfo" class="mt-2 py-2 px-3 text-center rounded" style="background-color: #8661E5; color: #ffffff;"></p>
+              <p class="bg-light lh-sm py-2 px-3 rounded">
+                Unsere Geschäftstelle befindet sich in der Musterstr. 1, 01067 Dresden.<br>
+                <span class="text-body-secondary fw-light" style="font-size: smaller;">
+                  Öffnungszeiten: Montag bis Freitag 9:00 bis 15:00 Uhr / Samstag und Sonntag geschlossen
+                </span>
+              </p>
+              <p class="text-body-secondary mb-1">
+                Bitte wähle aus:
+              </p>
+              <div class="form-check">
+                <input type="radio" class="form-check-input" name="auswahlAbgabe" id="uebergabe" value="Übergabe">
+                <label class="form-check-label" for="uebergabe">Übergabe an der Geschäftsstelle</label>
+              </div>
+              <div class="form-check">
+                <input type="radio" class="form-check-input" name="auswahlAbgabe" id="abholung" value="Abholung">
+                <label class="form-check-label" for="abholung">Abholung durch Sammelfahrzeug</label>
               </div>
             </div>
           </div>
-          <div class="container">
-            <div class="row d-none" id="optionAbholung">
-              <div class="mb-3 d-flex">
-                <input type="checkbox" class="form-check-input flex-column" id="auswahlAbholung">
-                <label class="form-check-label flex-column ps-1" for="auswahlAbholung">Ich möchte, dass meine Spende durch das Sammelfahrzeug abgeholt wird.</label>
-              </div>
+          <div class="d-none" id="angabenAbholung">
+            <div class="row mb-3">
+              <p class="text-body-secondary mb-1">
+                Um die Abholung durch unser Sammel&shy;fahrzeug planen zu können, benötigen wir weitere Angaben von dir. Bitte beachte, dass die Abholung an der angegebenen Abhol&shy;adresse und zum gewünschten Datum nicht garantiert werden kann. Zur Abstimmung des Abhol&shy;termins benötigen wir deine E-Mail-Adresse.
+                Im Anschluss an die Registrierung werden deine Daten an unser Team über&shy;mittelt, welches die Abholungen der Spenden koordiniert. Du erhältst eine Mail mit weiter&shy;führenden Informationen, sobald wir dir einen kon&shy;kreten Abhol&shy;termin vorschlagen können bzw. sofern offene Fragen mit dir geklärt werden müssen.
+              </p>
             </div>
-            <div class="d-none" id="angabenAbholung">
-              <div class="row">
-                <div class="col-lg-12">
-                  <p class="bg-light py-2 px-3 rounded">
-                    Um die Abholung durch unser Sammel&shy;fahrzeug planen zu können, benötigen wir weitere Angaben von dir. Bitte beachte, dass die Abholung an der angegebenen Abhol&shy;adresse und zum gewünschten Datum nicht garantiert werden kann. Zur Abstimmung des Abhol&shy;termins benötigen wir deine E-Mail-Adresse.
-                    Im Anschluss an die Registrierung werden deine Daten an unser Team über&shy;mittelt, welches die Abholungen der Spenden koordiniert. Du erhältst eine Mail mit weiter&shy;führenden Informationen, sobald wir dir einen konkreten Abhol&shy;termin vorschlagen können bzw. sofern offene Fragen mit dir geklärt werden müssen.
-                  </p>
-                </div>
+            <div class="row pt-1">
+              <div class="col-lg-3 mb-3">
+                <label for="mail" class="form-label">E-Mail</label>
+                <input type="text" class="form-control" id="mail">
               </div>
-              <div class="row pt-1">
-                <div class="col-lg-3 mb-3">
-                  <label for="mail" class="form-label">E-Mail</label>
-                  <input type="text" class="form-control" id="mail">
-                </div>
-                <div class="col-lg-3 mb-3">
-                  <label for="adresse" class="form-label">Abholadresse</label>
-                  <input type="text" class="form-control" id="adresse" placeholder="Straße Hausnr., PLZ Ort">
-                </div>
-                <div class="col-lg-3 mb-3">
-                  <label for="zusatzAbholung" class="form-label">Kommentar zur Abholung <span class="text-body-secondary">(optional)</span></label>
-                  <input type="text" class="form-control" id="zusatzAbholung" placeholder="bspw. abweichender Name bei Abholadresse">
-                </div>
-                <div class="col-lg-3 mb-3">
-                  <label for="abgabeDatum" class="form-label">Wunschdatum</label>
-                  <input type="date" class="form-control" id="abgabeDatum">
-                </div>
+              <div class="col-lg-3 mb-3">
+                <label for="adresse" class="form-label">Abholadresse</label>
+                <input type="text" class="form-control" id="adresse" placeholder="Straße Hausnr., PLZ Ort">
+              </div>
+              <div class="col-lg-3 mb-3">
+                <label for="zusatzAbholung" class="form-label">Kommentar zur Abholung <span class="text-body-secondary">(optional)</span></label>
+                <input type="text" class="form-control" id="zusatzAbholung">
+              </div>
+              <div class="col-lg-3 mb-3">
+                <label for="abgabeDatum" class="form-label">Wunschdatum</label>
+                <input type="date" class="form-control" id="abgabeDatum">
               </div>
             </div>
           </div>
@@ -214,10 +219,10 @@
           <button class="btn btn-primary" onclick="zeigeStep(3)">Weiter</button>
         </div>
     
-        <div id="step3" class="form-step d-none">
+        <div id="step3" class="form-step container pb-2 d-none">
           <h5>Registrierung der Kleidungsstücke</h5>
           <form id="kleiderFormular">
-            <div class="row px-2">
+            <div class="row">
               <div class="col-lg-4 mb-3">
                 <label for="kleiderArt" class="form-label">Art</label>
                 <select class="form-select" id="kleiderArt">
@@ -231,6 +236,7 @@
                   <option value="Röcke">Röcke</option>
                   <option value="Sportbekleidung">Sportbekleidung</option>
                   <option value="Unterwäsche & Socken">Unterwäsche & Socken</option>
+                  <option value="Schuhe">Schuhe</span></option>
                   <option value="Sonstiges">Sonstiges</option>
                 </select>
               </div>
@@ -254,16 +260,16 @@
               </select>
               </div>
             </div>
-            <div class="px-2 mb-3">
+            <div class="mb-3">
               <button type="button" id="ergaenzeKlStk" class="btn btn-primary" disabled>Kleidungsstück hinzufügen</button>
             </div>
           </form>
-          <ul id="kleiderListe" class="list-group mt-3 ms-2"></ul>
+          <ul id="kleiderListe" class="list-group my-3"></ul>
           <button class="btn btn-secondary" onclick="zeigeStep(2)">Zurück</button>
           <button class="btn btn-primary" onclick="zeigeStep(4)">Weiter</button>
         </div>
     
-        <div id="step4" class="form-step d-none">
+        <div id="step4" class="form-step container pb-2 d-none">
           <h5>Auswahl des Spendengebiets</h5>
           <div class="mb-3 ms-2">
             <div class="form-check">
@@ -288,17 +294,71 @@
             </div>
           </div>
           <button class="btn btn-secondary" onclick="zeigeStep(3)">Zurück</button>
-          <button class="btn btn-primary" onclick="submitForm()">Abschließen</button>
+          <button class="btn btn-primary" onclick="pruefeRegistrierung()">Angaben prüfen</button>
         </div>
     
-        <div id="summary" class="d-none">
-            <h5>Zusammenfassung Ihrer Angaben</h5>
-            <p>Name: <span id="summaryName"></span></p>
-            <p>Datum der Abgabe: <span id="summaryDate"></span></p>
-            <!-- Weitere Zusammenfassungen -->
+        <div id="step5" class="form-step container pb-2 d-none">
+          <h5>Überprüfung deiner Angaben</h5>
+          <table class="table table-sm table-borderless px-2">
+            <tbody>
+              <tr>
+                <th scope="row">Spender:in:</th>
+                <td><span id="zfname"></span></td>
+              </tr>
+              <tr>
+                <th scope="row">Abgabe:</th>
+                <td>
+                  <div class="d-none" id="zfabholung">
+                    <div class="d-none" id="fehlendeAngabenAbholung">
+                      Deine Angaben sind unvollständig, bitte gehe zurück und aktualisiere diese.
+                    </div>
+                    <div class="d-none" id="zfangabenAbholung">
+                      Abholung von <span id="zfadresse"></span> am <span id="zfabgabeDatum"></span> gewünscht.<br>
+                      E-Mail-Adresse, unter der du erreichbar bist: <span id="zfmail"></span>
+                      <div class="d-none" id="optKommentar">
+                        Kommentar zur Abholung: <span id="zfzusatzAbholung"></span>
+                      </div>
+
+                    </div>
+                  </div>
+                  <div class="d-none" id="zfabgabe">
+                    Die Spende wird an der Geschäftsstelle übergeben.
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Spende:</th>
+                <td><span id="zfkleiderListe"></span></td>
+              </tr>
+              <tr>
+                <th scope="row">Spendengebiet:</th>
+                <td><span id="zfspendengebiet"></span></td>
+              </tr>
+            </tbody>
+          </table>
+          <button class="btn btn-secondary" onclick="zeigeStep(4)">Zurück</button>
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#endeRegistrierung">Registrierung abschließen</button>
         </div>
-    </div>
-    
+      </div>
+      <div class="modal fade" id="endeRegistrierung" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5">Die Registrierung ist abgeschlossen.</h1>
+            </div>
+            <div class="modal-body">
+              <p>
+                Deine Spende wurde soeben erfolgreich bei uns registriert.<br>
+                Wir danken dir für deine Unterstützung! Deine Kleiderspende wird dazu beitragen, Bedürftigen zu helfen und einen positiven Unterschied in unserer Gemeinschaft zu machen. Teile deine Erfahrungen gerne mit deinen Freund:innen und deiner Familie, um auch sie zu ermutigen, Kleidung zu spenden.<br>
+                Bei Fragen oder weiterem Unterstützungsbedarf zögere nicht, uns zu kontaktieren. Wir sind hier, um zu helfen!
+              </p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Verstanden</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
   </main>
 
