@@ -255,8 +255,8 @@
                   <option value="L">L</option>
                   <option value="XL">XL</option>
                   <option value="XXL">XXL</option>
-                  <option value="Unisex">Unisex</option>
-                  <option value="Andere">Andere</option>
+                  <option value="unisex">unisex</option>
+                  <option value="Andere Größe">Andere Größe</option>
               </select>
               </div>
             </div>
@@ -300,44 +300,10 @@
         <div id="step5" class="form-step container pb-2 d-none">
           <h5>Überprüfung deiner Angaben</h5>
           <table class="table table-sm table-borderless px-2">
-            <tbody>
-              <tr>
-                <th scope="row">Spender:in:</th>
-                <td><span id="zfname"></span></td>
-              </tr>
-              <tr>
-                <th scope="row">Abgabe:</th>
-                <td>
-                  <div class="d-none" id="zfabholung">
-                    <div class="d-none" id="fehlendeAngabenAbholung">
-                      Deine Angaben sind unvollständig, bitte gehe zurück und aktualisiere diese.
-                    </div>
-                    <div class="d-none" id="zfangabenAbholung">
-                      Abholung von <span id="zfadresse"></span> am <span id="zfabgabeDatum"></span> gewünscht.<br>
-                      E-Mail-Adresse, unter der du erreichbar bist: <span id="zfmail"></span>
-                      <div class="d-none" id="optKommentar">
-                        Kommentar zur Abholung: <span id="zfzusatzAbholung"></span>
-                      </div>
-
-                    </div>
-                  </div>
-                  <div class="d-none" id="zfabgabe">
-                    Die Spende wird an der Geschäftsstelle übergeben.
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">Spende:</th>
-                <td><span id="zfkleiderListe"></span></td>
-              </tr>
-              <tr>
-                <th scope="row">Spendengebiet:</th>
-                <td><span id="zfspendengebiet"></span></td>
-              </tr>
-            </tbody>
+            <tbody id="ueberpruefung"></tbody>
           </table>
           <button class="btn btn-secondary" onclick="zeigeStep(4)">Zurück</button>
-          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#endeRegistrierung">Registrierung abschließen</button>
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#endeRegistrierung" onclick="abschlussRegistrierung()">Registrierung abschließen</button>
         </div>
       </div>
       <div class="modal fade" id="endeRegistrierung" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -347,11 +313,11 @@
               <h1 class="modal-title fs-5">Die Registrierung ist abgeschlossen.</h1>
             </div>
             <div class="modal-body">
-              <p>
-                Deine Spende wurde soeben erfolgreich bei uns registriert.<br>
-                Wir danken dir für deine Unterstützung! Deine Kleiderspende wird dazu beitragen, Bedürftigen zu helfen und einen positiven Unterschied in unserer Gemeinschaft zu machen. Teile deine Erfahrungen gerne mit deinen Freund:innen und deiner Familie, um auch sie zu ermutigen, Kleidung zu spenden.<br>
-                Bei Fragen oder weiterem Unterstützungsbedarf zögere nicht, uns zu kontaktieren. Wir sind hier, um zu helfen!
-              </p>
+              <table class="table table-sm table-borderless px-2">
+                <tbody id="abschluss"></tbody>
+              </table>
+              <div id="uebertragung"></div>
+              <p class="fw-light text-center">Wir danken dir für deine Unter&shy;stützung! Deine Kleider&shy;spende wird dazu bei&shy;tragen, Be&shy;dürftigen zu helfen und einen positiven Unter&shy;schied in unserer Gemein&shy;schaft zu machen. Teile deine Erfahrungen gerne mit deinen Freund:innen und deiner Familie, um auch sie zu ermutigen, Kleidung zu spenden.</p>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Verstanden</button>
