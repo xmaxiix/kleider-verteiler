@@ -4,7 +4,7 @@ function zeigeStep(step) {
     document.getElementById(`step${step}`).classList.remove('d-none');
 }
 
-document.getElementById('plz').addEventListener('input', checkPostleitzahl);
+// document.getElementById('plz').addEventListener('input', checkPostleitzahl);
 function checkPostleitzahl() {
     const plz = document.getElementById('plz').value;
     const erwartetePlz = /^(\d{5})$/;
@@ -26,6 +26,43 @@ function checkPostleitzahl() {
         document.getElementById('angabenAbholung').classList.add('d-none');
         abgabeInfo.textContent = '';
         abgabeInfo.classList.remove('bg-success');
+    }
+}
+
+document.getElementById('plz').addEventListener('input', pruefePostleitzahl);
+function pruefePostleitzahl() {
+    const plz = document.getElementById('plz').value;
+    const erwarteteEingabe = /^(\d{5})$/;
+    const url = 'https://openplzapi.org/de/Localities?postalCode=' + plz;
+
+    if (plz.match(erwarteteEingabe)) {
+        fetch(url)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Netzwerkantwort war nicht okay');
+                }
+                return response.json();
+            })
+            .then(data => {
+                zeigePostleitzahlData(data);
+            })
+            .catch(error => {
+                console.error('Fehler beim Aufrufen der PLZ-Daten:', error);
+                document.getElementById('plzInfo').textContent = 'Fehler beim Abrufen der Daten';
+            })
+    } else {
+        document.getElementById('plzInfo').textContent = '';
+    }
+
+}
+
+function zeigePostleitzahlData(data) {
+    const plzInfoDiv = document.getElementById('plzInfo');
+    if (data.length > 0) {
+        const ort = data[0];
+        plzInfoDiv.innerHTML = `<strong>Ort:</strong> ${ort.name} (${ort.federalState.name})`;
+    } else {
+        plzInfoDiv.textContent = 'Dies scheint keine gültige Postleitzahl zu sein.'
     }
 }
 
@@ -147,5 +184,5 @@ function formatiereDatum(datum) {
     return `${tag}.${monat}.${jahr} ${stunden}:${minuten}:${sekunden}`;
 }
 
-zeigeStep(3);
+zeigeStep(2);
 // document.getElementById('plz').value='';
