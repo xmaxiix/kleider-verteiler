@@ -1,3 +1,5 @@
+let globalOrt = '';
+
 function zeigeStep(step) {
     const steps = document.querySelectorAll('.form-step');
     steps.forEach((s) => s.classList.add('d-none'));
@@ -21,7 +23,7 @@ function pruefePostleitzahl() {
                 return response.json();
             })
             .then(data => {
-                zeigePostleitzahlData(data);
+                zeigeOrtsdaten(data);
             })
             .catch(error => {
                 console.error('Fehler beim Aufrufen der PLZ-Daten:', error);
@@ -44,14 +46,16 @@ function pruefePostleitzahl() {
 
 }
 
-function zeigePostleitzahlData(data) {
+function zeigeOrtsdaten(data) {
     const plzInfoDiv = document.getElementById('plzInfo');
     if (data.length > 0) {
         const ort = data[0];
+        globalOrt = ort.name;
         plzInfoDiv.innerHTML = `<strong>Ort:</strong> ${ort.name} (${ort.federalState.name})`;
         zeigeAbgabeoptionen();
     } else {
         plzInfoDiv.textContent = 'Dies scheint keine gültige Postleitzahl zu sein.'
+        globalOrt = '';
     }
 }
 
@@ -70,9 +74,9 @@ function zeigeAbgabeoptionen() {
     }
 }
 
-document.getElementById('abholung').addEventListener('change', updateAbgabeAnzeige);
-document.getElementById('uebergabe').addEventListener('change', updateAbgabeAnzeige);
-function updateAbgabeAnzeige() {
+document.getElementById('abholung').addEventListener('change', updateAbgabeanzeige);
+document.getElementById('uebergabe').addEventListener('change', updateAbgabeanzeige);
+function updateAbgabeanzeige() {
     const abholungSelected = document.getElementById('abholung').checked;
     const angabenAbholung = document.getElementById('angabenAbholung');
 
@@ -87,34 +91,34 @@ document.getElementById('kleiderFormular').addEventListener('input', () => {
     const art = document.getElementById('kleiderArt').value;
     const beschreibung = document.getElementById('kleiderBeschreibung').value.trim();
     const groesse = Array.from(document.getElementById('kleiderGroesse').selectedOptions).map(option => option.value);
-    document.getElementById('ergaenzeKlStk').disabled = !art || !beschreibung || groesse.length === 0;
+    document.getElementById('ergaenzeKleidungsstueck').disabled = !art || !beschreibung || groesse.length === 0;
 })
 
-document.getElementById('ergaenzeKlStk').addEventListener('click', () => {
+document.getElementById('ergaenzeKleidungsstueck').addEventListener('click', () => {
     const art = document.getElementById('kleiderArt').value;
     const beschreibung = document.getElementById('kleiderBeschreibung').value.trim();
     const groesse = document.getElementById('kleiderGroesse').value;
 
-    const neuesKlStk = `
+    const neuesKleidungsstueck = `
         <li class="list-group-item mb-1">
             ${art}, ${beschreibung}, ${groesse}
-            <button class="btn btn-danger btn-sm float-end" onclick="entferneKlStk(this)">Entfernen</button>
+            <button class="btn btn-danger btn-sm float-end" onclick="entferneKleidungsstueck(this)">Entfernen</button>
         </li>`;
-    document.getElementById('kleiderListe').innerHTML += neuesKlStk;
+    document.getElementById('kleiderListe').innerHTML += neuesKleidungsstueck;
 
     document.getElementById('kleiderFormular').reset();
-    document.getElementById('ergaenzeKlStk').disabled = true;
+    document.getElementById('ergaenzeKleidungsstueck').disabled = true;
 })
 
-function entferneKlStk(button) {
+function entferneKleidungsstueck(button) {
     button.parentElement.remove();
 }
 
 function extrahiereSpendenDetails() {
-    const klStk = document.querySelectorAll('#kleiderListe .list-group-item');
+    const kleidungsstuecke = document.querySelectorAll('#kleiderListe .list-group-item');
     let details = '';
-    klStk.forEach(stk => {
-        const text = stk.cloneNode(true);
+    kleidungsstuecke.forEach(kleidungsstueck => {
+        const text = kleidungsstueck.cloneNode(true);
         const button = text.querySelector('button');
         if (button) button.remove();
         details += `${text.textContent.trim()}<br>`;
@@ -126,17 +130,24 @@ function generiereZusammenfassung() {
     const name = document.getElementById('vorname').value + ' ' + document.getElementById('nachname').value;
     const adresse = document.getElementById('adresse').value;
     const abgabeDatum = document.getElementById('abgabeDatum').value;
-    const detailsAbholung = document.getElementById('abholung').checked ? `Abholung von ${adresse} am ${abgabeDatum} gewünscht.` : `Die Spende wird an der Geschäftsstelle übergeben.`;
+    const abholungChecked = document.getElementById('abholung').checked;
+    const uebergabeChecked = document.getElementById('uebergabe').checked
     const zusatzAbholung = document.getElementById('zusatzAbholung').value;
-    const kommentarHtml = zusatzAbholung ? `<br>Kommentar zur Abholung: ${zusatzAbholung}` : '';
     const mail = document.getElementById('mail').value;
-    const mailHtml = mail ? `E-Mail-Adresse für Kontaktaufnahme: ${mail}`: 'Es wurde keine E-Mail-Adresse angegeben.';
-    const spendengebietRadioButtons = document.querySelectorAll('input[name="spendengebiet"]');
-    let spendengebiet = '';
-    document.querySelectorAll('input[name="spendengebiet"]').forEach(radio => {
-        if (radio.checked) spendengebiet = radio.value;
-    });
+
+    let detailsAbholung = '';
+    if (abholungChecked && adresse != '' && abgabeDatum != '') {
+        detailsAbholung = `Abholung von ${adresse} am ${abgabeDatum} gewünscht.`;
+    } else if (abholungChecked) {
+        detailsAbholung = 'Abholung gewünscht.';
+    } else if (uebergabeChecked) {
+        detailsAbholung = 'Die Spende wird an der Geschäftsstelle übergeben.';
+    } 
+
+    const kommentarHtml = zusatzAbholung ? `<br>Kommentar zur Abholung: ${zusatzAbholung}` : '';
+    const mailHtml = mail ? `<br>E-Mail-Adresse für Kontaktaufnahme: ${mail}`: '';
     const detailsSpende = extrahiereSpendenDetails();
+    const spendengebiet = document.querySelector('input[name="spendengebiet"]:checked')?.value || '';
 
     const zusammenfassungHtml =`
         <tr>
@@ -144,8 +155,12 @@ function generiereZusammenfassung() {
             <td>${name}</td>
         </tr>
         <tr>
+            <th scope="row">Ort:</th>
+            <td>${globalOrt}</td>
+        </tr>
+        <tr>
             <th scope="row">Abgabe:</th>
-            <td>${detailsAbholung}${kommentarHtml}<br>${mailHtml}</td>
+            <td>${detailsAbholung}${kommentarHtml}${mailHtml}</td>
         </tr>
         <tr>
             <th scope="row">Spende:</th>
@@ -160,9 +175,62 @@ function generiereZusammenfassung() {
     return zusammenfassungHtml;
 }
 
+function validiereAngaben() {
+    const errors = [];
+    const vorname = document.getElementById('vorname').value.trim();
+    const nachname = document.getElementById('nachname').value.trim();
+    const plz = document.getElementById('plz').value.trim();
+    const abholung = document.getElementById('abholung').checked;
+    const uebergabe = document.getElementById('uebergabe').checked;
+    const mail = document.getElementById('mail').value.trim();
+    const adresse = document.getElementById('adresse').value.trim();
+    const abgabeDatum = document.getElementById('abgabeDatum').value.trim();
+    const kleidungsstuecke = document.querySelectorAll('#kleiderListe .list-group-item').length;
+    const spendengebietChecked = document.querySelector('input[name="spendengebiet"]:checked');
+
+    if (!vorname || !nachname) {
+        errors.push("Vorname und Nachname müssen angegeben werden.");
+    }
+    if (!plz) {
+        errors.push("Bitte gib deine Postleitzahl an.")
+    }
+    if (!(abholung || uebergabe)) {
+        errors.push("Bitte wähle eine Abgabeoption aus (Übergabe oder Abholung).");
+    }
+    if (abholung && (!mail || !adresse || !abgabeDatum)) {
+        errors.push("Für die Abholung müssen Mail, Adresse und Abgabedatum angegeben werden.");
+    }
+    if (kleidungsstuecke === 0) {
+        errors.push("Bitte füge mindestens ein Kleidungsstück hinzu.");
+    }
+    if (!spendengebietChecked) {
+        errors.push("Bitte wähle ein Spendengebiet aus.");
+    }
+
+    return errors;
+}
+
 function pruefeRegistrierung() {
+    const errors =validiereAngaben();
     const zusammenfassungHtml = generiereZusammenfassung();
     document.querySelector('#ueberpruefung').innerHTML = zusammenfassungHtml;
+
+    const abschlussButton = document.querySelector('#step5 button[data-bs-target="#endeRegistrierung"]');
+    const fehlermeldungDiv = document.getElementById('fehlermeldung');
+    if (errors.length > 0) {
+        abschlussButton.disabled = true;
+        let errorHtml = '<ul>';
+        errors.forEach(error => {
+            errorHtml += `<li>${error}</li>`;
+        });
+        errorHtml += '</ul>';
+        fehlermeldungDiv.innerHTML += errorHtml;
+        fehlermeldungDiv.classList.remove('d-none');
+    } else {
+        abschlussButton.disabled = false;
+        const existingErrors = document.querySelector('.alert-danger');
+        if (existingErrors) existingErrors.remove();
+    }   
     zeigeStep(5);
 }
 
@@ -173,9 +241,25 @@ function abschlussRegistrierung() {
     document.getElementById('uebertragung').innerHTML = uebertragungHtml;
     const zusammenfassungHtml = generiereZusammenfassung();
     document.querySelector('#abschluss').innerHTML = zusammenfassungHtml;
-    // document.getElementById('abschluss').innerHTML = zusammenfassungHtml;
 
     zeigeStep(1);
+
+    document.getElementById('nachname').value='';
+    document.getElementById('vorname').value='';
+    document.getElementById('plz').value='';
+    document.getElementById('plzInfo').innerHTML='Bitte gib deine Postleitzahl zur Überprüfung ein.';
+    document.getElementById('optionAbgabe').classList.add('d-none');
+    document.getElementById('angabenAbholung').classList.add('d-none');
+    document.getElementById('abholung').checked = false;
+    document.getElementById('uebergabe').checked = false;
+    document.getElementById('mail').value='';
+    document.getElementById('adresse').value='';
+    document.getElementById('zusatzAbholung').value='';
+    document.getElementById('abgabeDatum').value='';
+    document.getElementById('kleiderListe').innerHTML = '';
+    document.querySelectorAll('input[name="spendengebiet"]').forEach(radio => {radio.checked = false;});
+
+    globalOrt = '';
 }
 
 function formatiereDatum(datum) {
@@ -189,6 +273,3 @@ function formatiereDatum(datum) {
 }
 
 zeigeStep(1);
-document.getElementById('nachname').value='';
-document.getElementById('vorname').value='';
-document.getElementById('plz').value='';
