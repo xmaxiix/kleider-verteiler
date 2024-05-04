@@ -4,36 +4,13 @@ function zeigeStep(step) {
     document.getElementById(`step${step}`).classList.remove('d-none');
 }
 
-// document.getElementById('plz').addEventListener('input', checkPostleitzahl);
-function checkPostleitzahl() {
-    const plz = document.getElementById('plz').value;
-    const erwartetePlz = /^(\d{5})$/;
-    const abgabeInfo = document.getElementById('abgabeInfo');
-
-    document.getElementById('abholung').checked = false;
-    document.getElementById('uebergabe').checked = false;
-    document.getElementById('optionAbgabe').classList.remove('d-none');
-    
-    if (plz.match(erwartetePlz) && plz.startsWith('01')) {
-        abgabeInfo.textContent = 'Eine Abholung der Spende durch unser Sammelfahrzeug ist an diesem Ort grundsätzlich möglich.';
-        abgabeInfo.classList.add('bg-success');
-    }
-    else if (plz.match(erwartetePlz)) {
-        abgabeInfo.textContent = 'Eine Abholung der Spende durch unser Sammelfahrzeug ist an diesem Ort nicht möglich. Die Spende kann ausschließlich in unserer Geschäftsstelle übergegeben werden.';
-    }
-    else {
-        document.getElementById('optionAbgabe').classList.add('d-none');
-        document.getElementById('angabenAbholung').classList.add('d-none');
-        abgabeInfo.textContent = '';
-        abgabeInfo.classList.remove('bg-success');
-    }
-}
-
 document.getElementById('plz').addEventListener('input', pruefePostleitzahl);
 function pruefePostleitzahl() {
     const plz = document.getElementById('plz').value;
     const erwarteteEingabe = /^(\d{5})$/;
     const url = 'https://openplzapi.org/de/Localities?postalCode=' + plz;
+    const plzInfo = document.getElementById('plzInfo');
+    const abgabeInfo = document.getElementById('abgabeInfo');
 
     if (plz.match(erwarteteEingabe)) {
         fetch(url)
@@ -48,10 +25,21 @@ function pruefePostleitzahl() {
             })
             .catch(error => {
                 console.error('Fehler beim Aufrufen der PLZ-Daten:', error);
-                document.getElementById('plzInfo').textContent = 'Fehler beim Abrufen der Daten';
+                plzInfo.textContent = 'Fehler beim Abrufen der Daten';
             })
     } else {
-        document.getElementById('plzInfo').textContent = '';
+        plzInfo.textContent = 'Bitte gib deine Postleitzahl zur Überprüfung ein.';
+        document.getElementById('optionAbgabe').classList.add('d-none');
+        document.getElementById('angabenAbholung').classList.add('d-none');
+        abgabeInfo.textContent = '';
+        abgabeInfo.classList.remove('bg-success');
+        document.getElementById('optionAbholung').classList.remove('d-none');
+        document.getElementById('abholung').checked = false;
+        document.getElementById('uebergabe').checked = false;
+        document.getElementById('mail').value='';
+        document.getElementById('adresse').value='';
+        document.getElementById('zusatzAbholung').value='';
+        document.getElementById('abgabeDatum').value='';
     }
 
 }
@@ -61,8 +49,24 @@ function zeigePostleitzahlData(data) {
     if (data.length > 0) {
         const ort = data[0];
         plzInfoDiv.innerHTML = `<strong>Ort:</strong> ${ort.name} (${ort.federalState.name})`;
+        zeigeAbgabeoptionen();
     } else {
         plzInfoDiv.textContent = 'Dies scheint keine gültige Postleitzahl zu sein.'
+    }
+}
+
+function zeigeAbgabeoptionen() {
+    const plz = document.getElementById('plz').value;
+    const abgabeInfo = document.getElementById('abgabeInfo');
+
+    document.getElementById('optionAbgabe').classList.remove('d-none');
+
+    if (plz.startsWith('01')) {
+        abgabeInfo.textContent = 'Eine Abholung der Spende durch unser Sammelfahrzeug ist an diesem Ort grundsätzlich möglich.';
+        abgabeInfo.classList.add('bg-success');
+    } else {
+        abgabeInfo.textContent = 'Eine Abholung der Spende durch unser Sammelfahrzeug ist an diesem Ort nicht möglich. Die Spende kann ausschließlich in unserer Geschäftsstelle übergegeben werden.';
+        document.getElementById('optionAbholung').classList.add('d-none');
     }
 }
 
@@ -184,5 +188,7 @@ function formatiereDatum(datum) {
     return `${tag}.${monat}.${jahr} ${stunden}:${minuten}:${sekunden}`;
 }
 
-zeigeStep(2);
-// document.getElementById('plz').value='';
+zeigeStep(1);
+document.getElementById('nachname').value='';
+document.getElementById('vorname').value='';
+document.getElementById('plz').value='';

@@ -161,7 +161,7 @@
     
         <div id="step2" class="form-step container pb-2 d-none">
           <h5>Möglichkeit zur Abgabe der Spende</h5>
-          <div class="row mb-3">
+          <div class="row">
             <p class="text-body-secondary">
               Die Abgabe kann entweder persön&shy;lich an unserer Geschäfts&shy;stelle erfolgen oder als Abholung durch unser Sammel&shy;fahrzeug arrangiert werden. Durch die Angabe deiner Post&shy;leit&shy;zahl (PLZ) können wir über&shy;prüfen, ob eine Ab&shy;holung möglich ist.
             </p>
@@ -184,9 +184,11 @@
                 <input type="radio" class="form-check-input" name="auswahlAbgabe" id="uebergabe" value="Übergabe">
                 <label class="form-check-label" for="uebergabe">Übergabe an der Geschäftsstelle</label>
               </div>
-              <div class="form-check">
-                <input type="radio" class="form-check-input" name="auswahlAbgabe" id="abholung" value="Abholung">
-                <label class="form-check-label" for="abholung">Abholung durch Sammelfahrzeug</label>
+              <div id="optionAbholung">
+                <div class="form-check">
+                  <input type="radio" class="form-check-input" name="auswahlAbgabe" id="abholung" value="Abholung">
+                  <label class="form-check-label" for="abholung">Abholung durch Sammelfahrzeug</label>
+                </div>
               </div>
             </div>
           </div>
