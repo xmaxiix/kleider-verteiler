@@ -214,9 +214,10 @@ function pruefeRegistrierung() {
     const errors =validiereAngaben();
     const zusammenfassungHtml = generiereZusammenfassung();
     document.querySelector('#ueberpruefung').innerHTML = zusammenfassungHtml;
-
     const abschlussButton = document.querySelector('#step5 button[data-bs-target="#endeRegistrierung"]');
     const fehlermeldungDiv = document.getElementById('fehlermeldung');
+    fehlermeldungDiv.innerHTML = 'Ihre Angaben sind unvollständig:<br>';
+
     if (errors.length > 0) {
         abschlussButton.disabled = true;
         let errorHtml = '<ul>';
