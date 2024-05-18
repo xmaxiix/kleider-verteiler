@@ -129,7 +129,8 @@ function extrahiereSpendenDetails() {
 function generiereZusammenfassung() {
     const name = document.getElementById('vorname').value + ' ' + document.getElementById('nachname').value;
     const adresse = document.getElementById('adresse').value;
-    const abgabeDatum = document.getElementById('abgabeDatum').value;
+    const abgabeDatum =new Date(document.getElementById('abgabeDatum').value);
+    const abgabeDatumFormatiert = formatiereDatum(abgabeDatum).split(' ')[0];
     const abholungChecked = document.getElementById('abholung').checked;
     const uebergabeChecked = document.getElementById('uebergabe').checked
     const zusatzAbholung = document.getElementById('zusatzAbholung').value;
@@ -137,7 +138,7 @@ function generiereZusammenfassung() {
 
     let detailsAbholung = '';
     if (abholungChecked && adresse != '' && abgabeDatum != '') {
-        detailsAbholung = `Abholung von ${adresse} am ${abgabeDatum} gewünscht.`;
+        detailsAbholung = `Abholung von ${adresse} am ${abgabeDatumFormatiert} gewünscht.`;
     } else if (abholungChecked) {
         detailsAbholung = 'Abholung gewünscht.';
     } else if (uebergabeChecked) {
