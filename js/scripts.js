@@ -229,8 +229,8 @@ function pruefeRegistrierung() {
         fehlermeldungDiv.classList.remove('d-none');
     } else {
         abschlussButton.disabled = false;
-        const existingErrors = document.querySelector('.alert-danger');
-        if (existingErrors) existingErrors.remove();
+        fehlermeldungDiv.classList.add('d-none');
+        fehlermeldungDiv.innerHTML = '';
     }   
     zeigeStep(5);
 }
